@@ -2,4 +2,4 @@
 .vscode
 
 # Powershell Module
-*.psd1
+#*.psd1
