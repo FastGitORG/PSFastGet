@@ -4,7 +4,20 @@ Powershell stuff to download from fastgit which use github url.
 
 ## Install
 
-`Wait to build`
+### From PowerShell Gallery
+
+1. Make sure that you have install PowerShellGet correctly
+2. Run `Install-Module -Name FastGet` to install FastGet
+3. Run `Import-Module FastGet` to import FastGet
+4. Enjoy
+
+### From source file
+
+1. Download FastGet  file
+2. Unachive
+3. Run `Import-Module $fastget-path` to import FastGet(Change `$fastget-path` to your own path)
+4. Run `Import-Module FastGet` to import FastGet
+5. Enjoy
 
 ## Functions
 
@@ -25,3 +38,19 @@ The following functions are provides by this module.
     - $OutFile: save name or path
   - Output:
     - Null
+
+## TODO
+
+1. Alias
+2. MultiThread download
+
+## LICENSE
+
+```license
+                    GNU GENERAL PUBLIC LICENSE
+                       Version 3, 29 June 2007
+
+ Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
+```
