@@ -101,10 +101,10 @@ PrivateData = @{
         # LicenseUri = ''
 
         # A URL to the main website for this project.
-        # ProjectUri = ''
+        ProjectUri = 'https://github.com/fastgitorg/PSFastGet'
 
         # A URL to an icon representing this module.
-        # IconUri = ''
+        IconUri = 'https://avatars2.githubusercontent.com/u/62810231'
 
         # ReleaseNotes of this module
         # ReleaseNotes = ''

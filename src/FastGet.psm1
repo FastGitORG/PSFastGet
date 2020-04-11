@@ -43,7 +43,7 @@ function ConvertTo-FastGitUrl {
         elseif($_SplitUrl[2].ToLower() -eq "archive") {
             # Convert to codeload
             # TODO: CODELOAD PROXY
-            $_Result = "https://codeload.github.com/";
+            $_Result = "https://codeload.fastgit.org/";
             for ($i = 0; $i -lt $_SplitUrl.Length; ++$i){
                 if($i -ne 2) {
                     $_Result += $_SplitUrl[$i] + "/"
