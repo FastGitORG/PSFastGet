@@ -113,18 +113,3 @@ function Get-FastGit {
 
     Invoke-WebRequest -Uri $Url -OutFile $OutFile
 }
-
-#function Get-FastGit($Url, $OutFile) {
-
-#    
-#}
-#
-# Test
-#
-#ConvertTo-FastGitUrl -url "https://github.com/KevinZonda/Widget-WPF/releases/download/1.0.0/Widget-WPF-1.0.0-Installer.zip"
-#ConvertTo-FastGitUrl -url "https://github.com/KevinZonda/BullshitGenerator.Android/blob/master/README.md"
-#ConvertTo-FastGitUrl -url "https://github.com/KevinZonda/BullshitGenerator.Android/raw/master/README.md"
-#ConvertTo-FastGitUrl -url "https://github.com/dotnet/installer/archive/v3.1.201.zip"
-#ConvertTo-FastGitUrl
-#Get-FastGit -Url "https://github.com/KevinZonda/Widget-WPF/releases/download/1.0.0/Widget-WPF-1.0.0-Installer.zip"
-#help  ConvertTo-FastGitUrl -Full
