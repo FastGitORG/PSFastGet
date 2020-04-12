@@ -24,6 +24,9 @@ function ConvertTo-FastGitUrl {
         [string]$Url
     )
     # $Url
+
+    $Url=$Url.Replace("//hub.fastgit.org", "//github.com")
+
     if ($Url.StartsWith("https://github.com")) {
         $_SplitUrl = $Url.Replace("https://github.com/", "").Split('/');
         if(($_SplitUrl[2].ToLower() -eq "raw") -or  ($_SplitUrl[2].ToLower() -eq "blob")) {
@@ -110,8 +113,11 @@ function Get-FastGit {
     {
         $OutFile = $filename
     }
-
-    Invoke-WebRequest -Uri $Url -OutFile $OutFile
+    $Uri=$Url.Replace("https://", "").Replace("http://", "")
+    Write-Verbose "URL -> $Url"
+    Write-Verbose "URI -> $Uri"
+    Write-Verbose "OutFile -> $OutFile"
+    Invoke-WebRequest -Uri $Uri -OutFile $OutFile
 }
 
 New-Alias -Name fget -value Get-FastGit
