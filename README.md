@@ -39,10 +39,16 @@ The following functions are provides by this module.
   - Output:
     - Null
 
+## Alias
+
+| Alias | Function |
+| ----- | -------- |
+| fget | Get-FastGit |
+| fastget | Get-FastGit |
+
 ## TODO
 
-1. Alias
-2. MultiThread download
+1. MultiThread download
 
 ## LICENSE
 

@@ -113,3 +113,8 @@ function Get-FastGit {
 
     Invoke-WebRequest -Uri $Url -OutFile $OutFile
 }
+
+New-Alias -Name fget -value Get-FastGit
+New-Alias -Name fastget -value Get-FastGit
+
+Export-ModuleMember -Alias * -Function *
