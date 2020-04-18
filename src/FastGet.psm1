@@ -13,7 +13,7 @@ function ConvertTo-FastGitUrl {
         ConvertTo-FastGitUrl -url "https://github.com/dotnet/installer/archive/v3.1.201.zip"
         This will get the FastGit url of https://github.com/dotnet/installer/archive/v3.1.201.zip
     .Inputs
-        $Url: GitHub url
+        Url: GitHub url
     .Outputs
         return: FastGit url
     .Notes
@@ -23,7 +23,6 @@ function ConvertTo-FastGitUrl {
         [Parameter(Mandatory=$True)]
         [string]$Url
     )
-    # $Url
 
     $Url=$Url.Replace("//hub.fastgit.org", "//github.com")
 
@@ -61,6 +60,9 @@ function ConvertTo-FastGitUrl {
     elseif ($Url.StartsWith("https://raw.githubusercontent.com/")) {
         return $Url.Replace("https://raw.githubusercontent.com/", "https://raw.fastgit.org/")
     }
+    elseif($Url.StartsWith("https://codeload.github.com")) {
+        return $Url.Replace("https://codeload.github.com", "https://codeload.fastgit.org")
+    }
     else {
         # This is not github url
         return $Url
@@ -80,10 +82,11 @@ function Get-FastGit {
     .Description
         Get things from FastGit
     .Example
-        Get-FastGit -Url "https://github.com/KevinZonda/Widget-WPF/releases/download/1.0.0/Widget-WPF-1.0.0-Installer.zip"
+        Get-FastGit -Url "https://github.com/dotnet/installer/archive/v3.1.201.zip"
+        GitHub url will convert to FastGit url. Please refer to ConvertTo-FastGitUrl for more information.
         This will download file with FastGit url of https://github.com/dotnet/installer/archive/v3.1.201.zip
     .Inputs
-        $Url: GitHub url
+        Url: GitHub url
     .Notes
         The script is built by FastGit member(@KevinZonda)
 #>
@@ -109,8 +112,7 @@ function Get-FastGit {
             $OutFile += $filename
         }
     }
-    else
-    {
+    else {
         $OutFile = $filename
     }
     $Uri=$Url.Replace("https://", "").Replace("http://", "")
