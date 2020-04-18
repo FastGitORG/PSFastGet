@@ -31,7 +31,7 @@ function ConvertTo-FastGitUrl {
         if(($_SplitUrl[2].ToLower() -eq "raw") -or  ($_SplitUrl[2].ToLower() -eq "blob")) {
             # Convert to RAW
             $_Result = "https://raw.fastgit.org/";
-            for ($i = 0; $i -lt $_SplitUrl.Length; ++$i){
+            for ($i = 0; $i -lt $_SplitUrl.Length; ++$i) {
                 if($i -ne 2) {
                     $_Result += $_SplitUrl[$i] + "/"
                 }
@@ -46,7 +46,7 @@ function ConvertTo-FastGitUrl {
             # Convert to codeload
             # TODO: CODELOAD PROXY
             $_Result = "https://codeload.fastgit.org/";
-            for ($i = 0; $i -lt $_SplitUrl.Length; ++$i){
+            for ($i = 0; $i -lt $_SplitUrl.Length; ++$i) {
                 if($i -ne 2) {
                     $_Result += $_SplitUrl[$i] + "/"
                 }
