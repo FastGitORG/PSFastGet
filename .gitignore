@@ -3,3 +3,6 @@
 
 # Powershell Module
 #*.psd1
+
+# NuGet Key
+.nugetkey

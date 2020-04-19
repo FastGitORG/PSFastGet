@@ -12,10 +12,10 @@
 RootModule = 'FastGet.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.2.1'
+ModuleVersion = '1.2.2'
 
 # Supported PSEditions
-# CompatiblePSEditions = @()
+# CompatiblePSEditions = 'Desktop', 'Core'
 
 # ID used to uniquely identify this module
 GUID = 'cfbb046d-460a-463b-bf66-d99da2d50254'
@@ -72,13 +72,13 @@ Description = 'Get github things from fastgit.org'
 FunctionsToExport = 'ConvertTo-FastGitUrl', 'Get-FastGit'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
-CmdletsToExport = '*'
+CmdletsToExport = ''
 
 # Variables to export from this module
-VariablesToExport = '*'
+VariablesToExport = ''
 
 # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
-AliasesToExport = '*'
+AliasesToExport = 'fget', 'fastget'
 
 # DSC resources to export from this module
 # DscResourcesToExport = @()
@@ -107,7 +107,32 @@ PrivateData = @{
         IconUri = 'https://avatars2.githubusercontent.com/u/62810231'
 
         # ReleaseNotes of this module
-        # ReleaseNotes = ''
+        ReleaseNotes = @'
+Ver 1.2.1
+Opt Manifest
+
+Ver 1.2.1
+Fix codeload resolver
+Add Tags
+
+Ver 1.2.0
+Opt compatibility 
+Fix hub.fastgit.org resolver
+
+Ver 1.1.1
+Add Alias
+
+Ver 1.1.0
+Fix codeload resolve
+Add LICENSE(GPLv3)
+Add Manifest icon
+Add Manifest Uri
+
+Ver 1.0
+Base repo
+
+Previous releases are not included in this Changelog
+'@
 
         # Prerelease string of this module
         # Prerelease = ''
