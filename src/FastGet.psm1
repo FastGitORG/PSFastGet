@@ -24,11 +24,11 @@ function ConvertTo-FastGitUrl {
         [string]$Url
     )
 
-    $Url=$Url.Replace("//hub.fastgit.org", "//github.com")
+    $Url = $Url.Replace("//hub.fastgit.org", "//github.com")
 
     if ($Url.StartsWith("https://github.com")) {
         $_SplitUrl = $Url.Replace("https://github.com/", "").Split('/');
-        if(($_SplitUrl[2].ToLower() -eq "raw") -or  ($_SplitUrl[2].ToLower() -eq "blob")) {
+        if (($_SplitUrl[2].ToLower() -eq "raw") -or  ($_SplitUrl[2].ToLower() -eq "blob")) {
             # Convert to RAW
             $_Result = "https://raw.fastgit.org/";
             for ($i = 0; $i -lt $_SplitUrl.Length; ++$i) {
@@ -38,13 +38,12 @@ function ConvertTo-FastGitUrl {
             }
             return $_Result.Substring(0, $_Result.Length - 1)
         }
-        elseif($_SplitUrl[2].ToLower() -eq "releases") {
+        elseif ($_SplitUrl[2].ToLower() -eq "releases") {
             # Convert to Release
             return $Url.Replace("https://github.com", "https://release.fastgit.org")
         }
-        elseif($_SplitUrl[2].ToLower() -eq "archive") {
+        elseif ($_SplitUrl[2].ToLower() -eq "archive") {
             # Convert to codeload
-            # TODO: CODELOAD PROXY
             $_Result = "https://codeload.fastgit.org/";
             for ($i = 0; $i -lt $_SplitUrl.Length; ++$i) {
                 if($i -ne 2) {
@@ -60,7 +59,7 @@ function ConvertTo-FastGitUrl {
     elseif ($Url.StartsWith("https://raw.githubusercontent.com/")) {
         return $Url.Replace("https://raw.githubusercontent.com/", "https://raw.fastgit.org/")
     }
-    elseif($Url.StartsWith("https://codeload.github.com")) {
+    elseif ($Url.StartsWith("https://codeload.github.com")) {
         return $Url.Replace("https://codeload.github.com", "https://codeload.fastgit.org")
     }
     else {
@@ -101,13 +100,13 @@ function Get-FastGit {
 
     # Get filename
     $_SplitUrl = $Url.Split('/');
-    if($_SplitUrl.Length -eq 0) {
+    if ($_SplitUrl.Length -eq 0) {
         throw "$Url is invalid."
     } 
 
     $filename = $_SplitUrl[$_SplitUrl.Length - 1];
 
-    if($OutFile) {
+    if ($OutFile) {
         if($OutFile.EndsWith("\\") -or $OutFile.EndsWith("/")) {
             $OutFile += $filename
         }
@@ -119,7 +118,24 @@ function Get-FastGit {
     Write-Verbose "URL -> $Url"
     Write-Verbose "URI -> $Uri"
     Write-Verbose "OutFile -> $OutFile"
-    Invoke-WebRequest -Uri $Uri -OutFile $OutFile
+
+    Write-Verbose "Test if file exists"
+    if (Test-Path $OutFile)
+    {
+        Write-host "Would you like to download your PublishSettings File to connect to Azure? (Default is No)" -ForegroundColor Yellow 
+        $Readhost = Read-Host " (y/n) " 
+        Switch ($ReadHost.ToString().ToLower()) 
+        { 
+            "y" {
+                Invoke-WebRequest -Uri $Uri -OutFile $OutFile
+            } 
+            Default {
+                Write-Output "Operation cancled."
+            } 
+        }
+    }
+
+    
 }
 
 New-Alias -Name fget -value Get-FastGit

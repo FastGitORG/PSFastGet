@@ -49,6 +49,7 @@ The following functions are provides by this module.
 ## TODO
 
 1. MultiThread download
+2. Use confirm message instead of switch
 
 ## LICENSE
 
