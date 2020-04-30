@@ -116,7 +116,7 @@ function Get-FastGit {
     Write-Verbose "Test if file exists"
     if (Test-Path $OutFile)
     {
-        Write-host "A file with the same name exists. Do you want to cover it? (Default is No)" -ForegroundColor Yellow 
+        Write-Host "A file with the same name exists. Do you want to cover it? (Default is No)" -ForegroundColor Yellow 
         $Readhost = Read-Host " (y/n) " 
         Switch ($ReadHost.ToString().ToLower()) 
         { 
