@@ -38,19 +38,9 @@ function ConvertTo-FastGitUrl {
             }
             return $_Result.Substring(0, $_Result.Length - 1)
         }
-        elseif ($_SplitUrl[2].ToLower() -eq "releases") {
-            # Convert to Release
-            return $Url.Replace("https://github.com", "https://release.fastgit.org")
-        }
-        elseif ($_SplitUrl[2].ToLower() -eq "archive") {
-            # Convert to codeload
-            $_Result = "https://codeload.fastgit.org/";
-            for ($i = 0; $i -lt $_SplitUrl.Length; ++$i) {
-                if($i -ne 2) {
-                    $_Result += $_SplitUrl[$i] + "/"
-                }
-            }
-            return $_Result.Substring(0, $_Result.Length - 1)
+        elseif (($_SplitUrl[2].ToLower() -eq "releases") -or ($_SplitUrl[2].ToLower() -eq "archive")) {
+            # Convert to Download
+            return $Url.Replace("https://github.com", "https://download.fastgit.org")
         }
         else {
             return $Url
@@ -60,7 +50,11 @@ function ConvertTo-FastGitUrl {
         return $Url.Replace("https://raw.githubusercontent.com/", "https://raw.fastgit.org/")
     }
     elseif ($Url.StartsWith("https://codeload.github.com")) {
-        return $Url.Replace("https://codeload.github.com", "https://codeload.fastgit.org")
+        $Url = $Url.Replace("https://codeload.github.com", "https://download.fastgit.org")
+        if ($Url.EndsWith(".zip") -eq 0) {
+            $Url += ".zip"
+        }
+        return $Url
     }
     else {
         # This is not github url
@@ -122,7 +116,7 @@ function Get-FastGit {
     Write-Verbose "Test if file exists"
     if (Test-Path $OutFile)
     {
-        Write-host "Would you like to download your PublishSettings File to connect to Azure? (Default is No)" -ForegroundColor Yellow 
+        Write-host "A file with the same name exists. Do you want to cover it? (Default is No)" -ForegroundColor Yellow 
         $Readhost = Read-Host " (y/n) " 
         Switch ($ReadHost.ToString().ToLower()) 
         { 
@@ -135,7 +129,6 @@ function Get-FastGit {
         }
     }
 
-    
 }
 
 New-Alias -Name fget -value Get-FastGit

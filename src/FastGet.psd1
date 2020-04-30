@@ -108,6 +108,11 @@ PrivateData = @{
 
         # ReleaseNotes of this module
         ReleaseNotes = @'
+Ver 1.3.0
+Fix codeload resolver
+Add Manifest changelog
+Opt download logic
+
 Ver 1.2.1
 Opt Manifest
 
