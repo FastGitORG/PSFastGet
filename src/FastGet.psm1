@@ -50,11 +50,7 @@ function ConvertTo-FastGitUrl {
         return $Url.Replace("https://raw.githubusercontent.com/", "https://raw.fastgit.org/")
     }
     elseif ($Url.StartsWith("https://codeload.github.com")) {
-        $Url = $Url.Replace("https://codeload.github.com", "https://download.fastgit.org")
-        if ($Url.EndsWith(".zip") -eq 0) {
-            $Url += ".zip"
-        }
-        return $Url
+        return $Url.Replace("https://codeload.github.com", "https://codeload.fastgit.org")
     }
     else {
         # This is not github url
